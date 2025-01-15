@@ -25,9 +25,9 @@ class DownloadsManager{
             {
                 name: "Energy n More",
                 creator: "Jaden Allen",
-                thumbnail: "..assets/images/energy_n_more.png",
+                thumbnail: "/assets/images/energy_n_more.png",
                 teaser: "Now with Machines and Energy Cables!",
-                filePath: "..assets/files/energy_n_more.mcaddon",
+                filePath: "/assets/files/energy_n_more.mcaddon",
                 body: "Find osmium then make the powered spawner and other machines",
                 images: [
                     "../assets/images/energy_n_more.jpg"
