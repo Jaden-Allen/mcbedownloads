@@ -117,6 +117,7 @@ export function StartRewardTimer() {
 }
 export function createDownloadButton(href, innerText, parent, download) {
     const link = document.createElement('button');
+    link.className = 'grid-item-download-button';
     actionArea.downloadButton.addEventListener('click', function (ev) {
         const _link = document.createElement('a');
         _link.href = href;
