@@ -1,5 +1,6 @@
-import { Downloads } from "./downloads.js";
+import { Downloads, DownloadType } from "./downloads.js";
 import { nameToId } from "./page.js";
+Downloads.AddTemplate(1, DownloadType.addon);
 const hash = window.location.hash.slice(1);
 const wiki = document.getElementById('wiki_panel');
 const download = Downloads.All.find(d => nameToId(d.name) === hash);
