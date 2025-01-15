@@ -36,7 +36,9 @@ class DownloadsManager{
                     filePath: "assets/files/energy_n_more.mcaddon",
                     body: "This is a body",
                     images: [
-                        "assets/images/energy_n_more.jpg"
+                        "assets/images/template_screenshot.png",
+                        "assets/images/template_screenshot.png",
+                        "assets/images/template_screenshot.png"
                     ],
                     supportedVersions: {
                         min: "1.16.100",
