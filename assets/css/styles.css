@@ -275,7 +275,7 @@ footer{
     object-fit: cover;
     z-index: 1;
 }
-.custom-dropdown {
+.sorting-dropdown {
     position: relative;
     display: inline-block;
     width: 200px;
@@ -359,7 +359,7 @@ footer {
     padding: 1rem;
 }
 
-.upper-area-content{
+.filter-area{
     display: flex;
     justify-content: space-evenly;
     padding: 1rem;

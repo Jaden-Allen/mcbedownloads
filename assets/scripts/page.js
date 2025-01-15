@@ -1,12 +1,4 @@
 export function populateList(categoryId, items) {
-    const closePopupButton = document.getElementById("popup-close-button");
-    if (closePopupButton != null) {
-        closePopupButton.addEventListener('click', function (ev) {
-            ClosePopup();
-            const closeButtonSound = document.getElementById('close-button-audio');
-            closeButtonSound.play();
-        });
-    }
     const grid = document.getElementById(categoryId);
     grid.innerHTML = "";
     items.forEach((item) => {

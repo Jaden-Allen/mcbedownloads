@@ -2,15 +2,6 @@ import { DownloadItem } from "./downloads.js";
 
 
 export function populateList(categoryId: string, items: DownloadItem[]): void {
-    const closePopupButton = document.getElementById("popup-close-button");
-    if (closePopupButton != null){
-        closePopupButton.addEventListener('click', function(ev){
-            ClosePopup();
-            const closeButtonSound = document.getElementById('close-button-audio') as HTMLAudioElement;
-            closeButtonSound.play();
-        })
-    }
-    
     const grid = document.getElementById(categoryId) as HTMLDivElement;
     grid.innerHTML = "";
     items.forEach((item) => {
