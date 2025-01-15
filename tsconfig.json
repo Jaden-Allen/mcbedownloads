@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "outDir": "./assets/scripts",
+    "module": "ESNext", // Use ES modules
+    "target": "es2015"
+  }
+}

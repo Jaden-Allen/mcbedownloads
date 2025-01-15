@@ -1,0 +1,403 @@
+@font-face {
+    font-family: 'MinecraftTitle';
+    src: url('../fonts/Minecrafter.Alt.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'MinecraftRegular';
+    src: url('../fonts/MinecraftRegular-Bmg3.otf') format('opentype');
+}
+
+  
+main {
+    flex: 1;
+  }
+header {
+    font-family: 'MinecraftTitle';
+    background-image: linear-gradient(#202020, #252525);
+    color: #f7c957;
+    padding: 1rem;
+    text-align: center;
+}
+
+.popup-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #12121286;
+    background-image: radial-gradient(#12121270, #00000073);
+    display: flex;
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+.popup-close-button{
+    position: absolute;
+    cursor: pointer;
+    right: 2%;
+    top: 2%;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: 0;
+}
+.popup-close-button img{
+    position: static;
+    cursor: pointer;
+    width: 100%;
+    height: auto;
+    image-rendering: pixelated;
+    background-color: #979797;
+    border: 2px solid #00000073;
+}
+
+.popup-content {
+    width: auto;
+    height: auto;
+    position: relative;
+    padding: 50px;
+    background-color: #363636;
+    border: 2px solid #ccc;
+    background-image: radial-gradient(#141414,#141414);
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.action-area{
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.youtube-button {
+    display: flex;
+    align-items: center;
+    background-color: #FF0000;
+    color: white;
+    padding: 10px 20px;
+    font-size: 20px;
+    width: 130px;
+    border: 3px solid #cc0000;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.youtube-button i {
+    margin-right: 8px;
+}
+
+.youtube-button:hover {
+    background-color: #cc0000;
+    transform: scale(1.05);
+}
+
+.twitch-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 130px;
+    background-color: #9146FF;
+    color: white;
+    padding: 10px 20px;
+    border: 3px solid #6924cf;
+    font-size: 20px;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.twitch-button i {
+    margin-right: 8px;
+}
+
+.twitch-button:hover {
+    background-color: #6924cf;
+    transform: scale(1.05);
+}
+
+.download-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "MinecraftRegular";
+    width: 130px;
+    background-color: #31d367;
+    color: white;
+    padding: 10px 0px;
+    border: 3px solid rgb(10, 61, 27);
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.download-button:hover {
+    background-color: #0c4b21;
+    transform: scale(1.05);
+}
+.download-button:disabled {
+    background-color: #0c4b21;
+    transform: scale(1);
+    color: lightgrey;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin: 0;
+    letter-spacing: 2px;
+    text-shadow: 5px 5px 0px #49380d;
+}
+
+nav a {
+    font-family: 'MinecraftRegular';
+    color: white;
+    text-decoration: none;
+    margin: 0 1rem;
+    transition: font-size 0.3s, box-shadow 0.3s;
+}
+
+nav a:hover {
+    text-decoration: underline;
+    font-size: 1.05rem;
+}
+
+section {
+    margin: 2rem 0;
+    padding: 1rem;
+}
+
+section h2 {
+    color: white;
+    font-size: 2rem;
+    text-decoration: underline;
+    text-underline-offset: 0.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 5px 5px 0px #333333;
+    text-align: center;
+}
+
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 175px);
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    gap: 1rem;
+    outline: 2px solid#272727;
+    background-image: radial-gradient(#161616, #131313);
+}
+
+
+.grid-item {
+    position: relative;
+    width: 150px;
+    height: 250px;
+    border: 2px solid #f7c957;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: radial-gradient(#313131, #131313);
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'MinecraftRegular', sans-serif;
+    color: #ffffff;
+    background-color: #121212;
+}
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Ensure the page-wrapper takes the full height */
+  }
+
+.grid-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(247, 201, 87, 0.5);
+}
+
+.grid-item p {
+    font-family: 'MinecraftRegular' sans-serif;
+    margin: 0px;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    color: #ffffff;
+}
+.grid-item button {
+    font-family: 'MinecraftRegular' sans-serif;
+    margin: 0px;
+    padding: 0.5rem;
+    background-color: transparent;
+    border: transparent;
+    font-size: 0.9rem;
+    color: #f7c957;
+    text-decoration: underline;
+    cursor: pointer;
+}
+footer{
+    bottom: 0px;
+}
+
+.grid-item a {
+    font-family: 'MinecraftRegular' sans-serif;
+    margin: 0;
+    padding: 0.5rem;
+    color: #f7c957;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+.grid-item .thumbnail {
+    display: block;
+    width: 115px;
+    height: 115px;
+    margin-top: 0;
+    image-rendering: pixelated;
+    outline: 2px solid #f7c957;
+    object-fit: cover;
+    z-index: 1;
+}
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+    width: 200px;
+    z-index: 1;
+  }
+
+#dropdown-button {
+    border: 1px solid #f7c957;
+    border-radius: 4px;
+    color: white;
+    background-color: #222;
+    cursor: pointer;
+    height: 35px;
+    width: 200px;
+    text-align: left;
+    font-family: "MinecraftRegular";
+}
+
+#dropdown-options {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: #222;
+    border: 1px solid #a58023;
+    border-radius: 4px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#dropdown-options.hidden {
+    display: none;
+}
+
+#dropdown-options li {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+#dropdown-options li:hover, #dropdown-options li:focus {
+    background-color: #f7c957;
+    color: #fff;
+}
+.grid-item .wiki-link {
+    font-family: 'MinecraftRegular' sans-serif;
+    margin: 0;
+    padding: 0.5rem;
+    color: #f7c957;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.grid-item .checkmark {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 44px;
+    height: 32px;
+}
+.grid-item-download-button button {
+    font-family: 'MinecraftRegular' sans-serif;
+    margin: 0;
+    padding: 0.5rem;
+    color: #f7c957;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.grid-item-download-button {
+    font-family: 'MinecraftRegular' sans-serif;
+    margin: 0;
+    padding: 0.5rem;
+    color: #f7c957;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+footer {
+    background: #222;
+    color: #f7c957;
+    text-align: center;
+    padding: 1rem;
+}
+
+.upper-area-content{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1rem;
+    flex-direction: row;
+}
+.search-form {
+    display: block;
+    justify-content: right;
+    height: 35;
+}
+.search-form label{
+    color: white;
+    font-size: large;
+}
+.search-form input{
+    padding: 8px;
+    border: 2px solid #f7c957;
+    background-color: #222;
+    border-radius: 5px;
+    width: 200;
+    height: 35;
+    color: white;
+    font-family: "MinecraftRegular";
+}
+.search-form input::placeholder[type="search"] {
+    color: white;
+    font-family: "MinecraftRegular";
+}
+
+
+.search-form button {
+    padding: 9px;
+    background-color: #222;
+    color: white;
+    border: 2px solid #f7c957;
+    border-radius: 5px;
+    height: 35;
+    cursor: pointer;
+}
+
+.search-form button:hover {
+    background-color: #c59d38;
+}
