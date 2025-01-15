@@ -15,14 +15,14 @@ class DownloadsManager {
     AddTemplate(amount, downloadType) {
         for (let i = 0; i < amount; i++) {
             this._all.push({
-                name: this.generateIndustrialName(),
-                creator: this.generateCustomName('male'),
-                thumbnail: this.generateRandomPackIconUrl(),
-                teaser: this.generateTeaser(),
+                name: 'Template Download',
+                creator: 'Jaden Allen',
+                thumbnail: 'assets/images/energy_n_more.png',
+                teaser: 'This is a teaser',
                 filePath: "assets/files/energy_n_more.mcaddon",
-                body: "Find osmium then make the powered spawner and other machines",
+                body: "This is a body",
                 images: [
-                    "images/energy_n_more.jpg"
+                    "assets/images/energy_n_more.jpg"
                 ],
                 supportedVersions: {
                     min: "1.16.100",
@@ -30,8 +30,8 @@ class DownloadsManager {
                 },
                 version: "1.0.0",
                 downloadType: downloadType,
-                lastUpdated: this.generateFormattedDateString(new Date(2000, 0, 1), new Date(2050, 11, 31)),
-                creationDate: this.generateFormattedDateString(new Date(2000, 0, 1), new Date(2050, 11, 31))
+                lastUpdated: "1/1/2025",
+                creationDate: "1/1/2025"
             });
         }
     }

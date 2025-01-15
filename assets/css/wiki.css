@@ -1,0 +1,10 @@
+.wiki_panel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 350px);
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    gap: 1rem;
+    outline: 2px solid#272727;
+    background-image: radial-gradient(#161616, #131313);
+}
