@@ -62,7 +62,7 @@ function createGridItem(categoryId: string, item: DownloadItem, grid: HTMLDivEle
     wikiLinkArea.className = 'grid-item-wiki-link-area'
     const wikiLink = wikiLinkArea.appendChild(document.createElement('a'));
     wikiLink.className = 'grid-item-wiki-link';
-    wikiLink.href = `/wiki.html#${nameToId(item.name)}`;
+    wikiLink.href = `wiki.html#${nameToId(item.name)}`;
     wikiLink.text = 'Wiki'
 }
 
