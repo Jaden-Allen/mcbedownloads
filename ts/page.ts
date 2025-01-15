@@ -225,24 +225,84 @@ export function InitializeSortButton(list: DownloadItem[], categoryId: string){
         }
     });
 }
+
 export function InitializeSearchBar(list: DownloadItem[], categoryId: string){
     upperAreaContent.searchBar.addEventListener('input', function(ev){
-        let isUserQuery =  upperAreaContent.searchBar.value.charAt(0) === '@';
-        let isQuery = upperAreaContent.searchBar.value.substring(0, 1) === 'q.';
-        if (upperAreaContent.searchBar.value.includes('@')){
+        if (upperAreaContent.searchBar.value.startsWith('@')){
             populateList(categoryId, SortListFromCreatorQuery(list, upperAreaContent.searchBar.value.substring(1)));
-        }
-        else if (isQuery){
+        } 
+        else if (upperAreaContent.searchBar.value.startsWith('q.')){
+            let [key, value] = upperAreaContent.searchBar.value.split("=");
+            if (key != undefined && value != undefined){
+                console.warn(key + ', ' + value)
+                populateList(categoryId, SortListFromQuery(list, key, value));
+            }
             
-            let [query, value] = upperAreaContent.searchBar.value.split("=");
-            if (query === undefined || value === undefined) return;
-            console.log(query + ", " + value);
-
-            populateList(categoryId, SortListFromQuery(list, query, value));
         }
         else{
             populateList(categoryId, SortListFromNameQuery(list, upperAreaContent.searchBar.value));
         }
+    })
+    InitializeCommands(list, categoryId);
+}
+function UpdateSearchBar(list: DownloadItem[], categoryId: string){
+    if (upperAreaContent.searchBar.value.startsWith('@')){
+        populateList(categoryId, SortListFromCreatorQuery(list, upperAreaContent.searchBar.value.substring(1)));
+    } 
+    else if (upperAreaContent.searchBar.value.startsWith('q.')){
+        let [key, value] = upperAreaContent.searchBar.value.split("=");
+        if (key != undefined && value != undefined){
+            console.warn(key + ', ' + value)
+            populateList(categoryId, SortListFromQuery(list, key, value));
+        }
+        
+    }
+    else{
+        populateList(categoryId, SortListFromNameQuery(list, upperAreaContent.searchBar.value));
+    }
+}
+const commands = ["q.name=", "q.last_update=", "q.date_created="];
+function InitializeCommands(list: DownloadItem[], categoryId: string){
+    upperAreaContent.searchBar.addEventListener('input', function(ev){
+        const inputValue = this.value.toLowerCase();
+        const filteredCommands = commands.filter(command => command.toLowerCase().includes(inputValue));
+        const allNames = list.map(item => item.name);
+        const filteredNames = allNames.filter(name => name.toLowerCase().includes(inputValue));
+        
+        const autoCompletions = filteredNames;
+        filteredCommands.forEach(command => autoCompletions.push(command));
+
+        if (inputValue.startsWith('@')){
+            const filteredCreators = list.map(item => item.creator).filter(item => item.toLowerCase().includes(inputValue.replace("@", "")))
+            filteredCreators.forEach(creator => autoCompletions.push("@" + creator));
+        }
+
+        const filteredNameQueries = inputValue.startsWith('q.name=') ? list.map(item => item.name).filter(item => item.toLowerCase().includes(inputValue.replace('q.name=', ''))) : []
+        const filteredLastUpdateQueries = inputValue.startsWith('q.last_update=') ? list.map(item => item.lastUpdated).filter(item => item.toLowerCase().includes(inputValue.replace('q.last_update=', ''))) : []
+        const filteredDateCreatedQueries = inputValue.startsWith('q.date_created=') ? list.map(item => item.creationDate).filter(item => item.toLowerCase().includes(inputValue.replace('q.date_created=', ''))) : []
+
+        filteredNameQueries.forEach(query => {autoCompletions.push("q.name=" + query)});
+        filteredLastUpdateQueries.forEach(query => {autoCompletions.push("q.last_update=" + query)});
+        filteredDateCreatedQueries.forEach(query => {autoCompletions.push("q.date_created=" + query)});
+
+        const resultsList = document.getElementById('autocomplete-results')
+        resultsList.innerHTML = '';
+
+
+        autoCompletions.forEach(autoCompletion => {
+            const listItem = document.createElement("li");
+            listItem.textContent = autoCompletion;
+            listItem.addEventListener("click", function() {
+                
+              upperAreaContent.searchBar.value = autoCompletion;
+              resultsList.innerHTML = ""; // Hide suggestions after selection
+
+              UpdateSearchBar(list, categoryId);
+
+            });
+            resultsList.appendChild(listItem);
+          });
+
     })
 }
 
@@ -266,11 +326,11 @@ export function SortList(items: DownloadItem[], sortType: SortType){
 export function SortListFromQuery(items: DownloadItem[], query: string, value: string){
     switch(query){
         case 'q.name':
-        return items.filter((a) => a.name.toLowerCase().includes(query.toLowerCase()));
+        return items.filter((a) => a.name.toLowerCase().includes(value.toLowerCase()));
         case 'q.last_update':
-        return items.filter((a) => a.lastUpdated.toLowerCase().includes(query.toLowerCase()));
+        return items.filter((a) => a.lastUpdated.toLowerCase().includes(value.toLowerCase()));
         case 'q.date_created':
-        return items.filter((a) => a.creationDate.toLowerCase().includes(query.toLowerCase()));
+        return items.filter((a) => a.creationDate.toLowerCase().includes(value.toLowerCase()));
         default: return [];
     }
 }
