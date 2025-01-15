@@ -24,22 +24,46 @@ function createGridItem(categoryId: string, item: DownloadItem, grid: HTMLDivEle
     thumbnail.alt = `${item.name}`;
     imageContainer.appendChild(thumbnail);
 
-    const itemName = document.createElement('p');
+    const itemName = document.createElement('div');
+    itemName.className = 'grid-item-name-area';
     const itemNameSpan = document.createElement('span');
     itemNameSpan.className = 'grid-item-name'
     itemNameSpan.textContent = `${item.name}`;
     itemName.appendChild(itemNameSpan);
     gridItem.appendChild(itemName);
 
-    const itemCreator = document.createElement('p');
+    const itemCreator = document.createElement('div');
+    itemCreator.className = 'grid-item-creator-area'
     const itemCreatorSpan = document.createElement('span');
-    itemCreatorSpan.textContent = `${item.creator}`;
+    itemCreatorSpan.textContent = `Creator: ${item.creator}`;
+    itemCreatorSpan.className = 'grid-item-creator';
     itemCreator.appendChild(itemCreatorSpan);
     gridItem.appendChild(itemCreator);
+
+    const itemTeaserArea = gridItem.appendChild(document.createElement('div'));
+    itemTeaserArea.className = 'grid-item-teaser-area';
+    const itemTeaserSpan = document.createElement('span');
+    itemTeaserSpan.className = 'grid-item-teaser';
+    itemTeaserSpan.textContent = `${item.teaser}`; 
+    itemTeaserArea.appendChild(itemTeaserSpan);
+
+    const itemVersionArea = gridItem.appendChild(document.createElement('div'));
+    itemVersionArea.className = 'grid-item-version-area';
+    const itemVersionSpan = itemVersionArea.appendChild(document.createElement('span'));
+    itemVersionSpan.className = 'grid-item-version';
+    itemVersionSpan.textContent = `Version: ${item.version}`
+
     const gridItemFooterLinksDiv = document.createElement('div');
     gridItem.appendChild(gridItemFooterLinksDiv);
+
     
     const downloadLink = createDownloadButton(item.filePath, "Download", gridItemFooterLinksDiv, `${nameToId(item.name)}_${item.version}.mcaddon`)
+    const wikiLinkArea = gridItem.appendChild(document.createElement('div'));
+    wikiLinkArea.className = 'grid-item-wiki-link-area'
+    const wikiLink = wikiLinkArea.appendChild(document.createElement('a'));
+    wikiLink.className = 'grid-item-wiki-link';
+    wikiLink.href = `/wiki.html#${nameToId(item.name)}`;
+    wikiLink.text = 'Wiki'
 }
 
 export function OpenPopup(){
