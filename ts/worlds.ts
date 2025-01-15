@@ -2,7 +2,7 @@ import { adsOverlay, ClosePopup, InitializeSearchBar, InitializeSortButton, popu
 import { Downloads } from "./downloads.js";
  
 populateList("worlds-list", SortList(Downloads.Worlds, SortType.recentlyUpdated));
-InitializeSortButton(Downloads.Worlds);
-InitializeSearchBar(Downloads.Worlds);
+InitializeSortButton(Downloads.Worlds, "worlds-list");
+InitializeSearchBar(Downloads.Worlds, "worlds-list");
 
 adsOverlay.Initialize();

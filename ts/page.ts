@@ -190,7 +190,7 @@ class AdsOverlay{
     }
 }
 export const adsOverlay = new AdsOverlay();
-export function InitializeSortButton(list: DownloadItem[]){
+export function InitializeSortButton(list: DownloadItem[], categoryId: string){
     
     const button = document.getElementById('dropdown-button');
     const options = document.getElementById('dropdown-options');
@@ -209,21 +209,21 @@ export function InitializeSortButton(list: DownloadItem[]){
     
             switch(text){
                 case "Recently Updated":
-                    populateList("addons-list", SortList(list, SortType.recentlyUpdated));
+                    populateList(categoryId, SortList(list, SortType.recentlyUpdated));
                     break;
                 case "Name (A-Z)":
-                    populateList("addons-list", SortList(list, SortType.nameAZ));
+                    populateList(categoryId, SortList(list, SortType.nameAZ));
                     break;
                 case "Name (Z-A)":
-                    populateList("addons-list", SortList(list, SortType.nameZA));
+                    populateList(categoryId, SortList(list, SortType.nameZA));
                     break;
             }
         }
     });
 }
-export function InitializeSearchBar(list: DownloadItem[]){
+export function InitializeSearchBar(list: DownloadItem[], categoryId: string){
     upperAreaContent.searchBar.addEventListener('input', function(ev){
-        populateList("addons-list", SortListFromQuery(list, upperAreaContent.searchBar.value));
+        populateList(categoryId, SortListFromQuery(list, upperAreaContent.searchBar.value));
     })
 }
 
