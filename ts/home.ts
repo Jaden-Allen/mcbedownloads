@@ -1,5 +1,5 @@
 import { Downloads } from "./downloads.js";
-import {populateList, SortList, SortType } from "./page.js";
+import {adsOverlay, populateList, SortList, SortType } from "./page.js";
 
   
 // Populate all categories
@@ -8,3 +8,4 @@ populateList("worlds-list", Downloads.Worlds);
 populateList("resource-packs-list", Downloads.ResourcePacks);
 populateList("skin-packs-list", Downloads.SkinPacks);
 
+adsOverlay.Initialize();
