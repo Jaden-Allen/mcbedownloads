@@ -21,9 +21,8 @@
         </nav>
       </header>
       <main>
-        <section id="skin_packs">
-          <h2>Skin Packs</h2>
-          <div class="custom-dropdown">
+        <div class="filter-area">
+          <div class="sorting-dropdown">
             <button id="dropdown-button">Recently Updated</button>
             <ul id="dropdown-options" class="hidden">
               <li tabindex="0">Recently Updated</li>
@@ -31,6 +30,13 @@
               <li tabindex="0">Name (Z-A)</li>      
             </ul>
           </div>
+          <div class="search-form">
+            <input type="text" id="search-bar" placeholder="Search here..." autocomplete="off"/>
+            <ul id="autocomplete-results" class="autocomplete-list"></ul>
+          </div>
+        </div>
+        <section id="skin_packs">
+          <h2>Skin Packs</h2>
           <div class="grid" id="skin-packs-list"></div>
         </section>
       </main>

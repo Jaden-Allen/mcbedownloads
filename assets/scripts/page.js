@@ -166,18 +166,18 @@ class AdsOverlay {
         return hyperlink;
     }
 }
+const dropdownButton = document.getElementById('dropdown-button');
+const dropdownOptions = document.getElementById('dropdown-options');
 export const adsOverlay = new AdsOverlay();
 export function InitializeSortButton(list, categoryId) {
-    const button = document.getElementById('dropdown-button');
-    const options = document.getElementById('dropdown-options');
-    button.addEventListener('click', () => {
-        options.classList.toggle('hidden');
+    dropdownButton.addEventListener('click', () => {
+        dropdownOptions.style.display = 'block';
     });
-    options.addEventListener('click', (event) => {
+    dropdownOptions.addEventListener('click', (event) => {
         const target = event.target;
         if (target.tagName === 'LI') {
-            button.textContent = target.textContent;
-            options.classList.add('hidden');
+            dropdownButton.textContent = target.textContent;
+            dropdownOptions.style.display = 'none';
             const value = target.getAttribute('data-value');
             const text = target.textContent;
             switch (text) {
@@ -229,7 +229,11 @@ function UpdateSearchBar(list, categoryId) {
 }
 const commands = ["q.name=", "q.last_update=", "q.date_created="];
 function InitializeCommands(list, categoryId) {
+    upperAreaContent.searchBar.addEventListener('click', function (ev) {
+        upperAreaContent.resultsList.style.display = "";
+    });
     upperAreaContent.searchBar.addEventListener('input', function (ev) {
+        upperAreaContent.resultsList.style.display = "";
         const inputValue = this.value.toLowerCase();
         const filteredCommands = commands.filter(command => command.toLowerCase().includes(inputValue));
         const allNames = list.map(item => item.name);
@@ -251,6 +255,7 @@ function InitializeCommands(list, categoryId) {
         autoCompletions.forEach(autoCompletion => {
             const listItem = document.createElement("li");
             listItem.textContent = autoCompletion;
+            listItem.tabIndex = 0;
             listItem.addEventListener("click", function () {
                 upperAreaContent.searchBar.value = autoCompletion;
                 resultsList.innerHTML = ""; // Hide suggestions after selection
@@ -258,10 +263,21 @@ function InitializeCommands(list, categoryId) {
             });
             resultsList.appendChild(listItem);
         });
+        resultsList.style.display = autoCompletions.length > 0 ? "" : "none";
+    });
+    document.addEventListener("click", function (event) {
+        const target = event.target;
+        if (!upperAreaContent.searchBar.contains(target) && !upperAreaContent.resultsList.contains(target)) {
+            upperAreaContent.resultsList.style.display = "none"; // Hide the list if clicking outside
+        }
+        if (!dropdownOptions.contains(target) && !dropdownButton.contains(target)) {
+            dropdownOptions.style.display = "none"; // Hide the list if clicking outside
+        }
     });
 }
 const upperAreaContent = {
-    searchBar: document.getElementById('search-bar')
+    searchBar: document.getElementById('search-bar'),
+    resultsList: document.getElementById('autocomplete-results')
 };
 export var SortType;
 (function (SortType) {
