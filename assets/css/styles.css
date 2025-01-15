@@ -13,10 +13,11 @@ main {
   }
 header {
     font-family: 'MinecraftTitle';
-    background-image: linear-gradient(#202020, #252525);
+    background-image: radial-gradient(#252525, #202020);
     color: #f7c957;
     padding: 1rem;
     text-align: center;
+    border: 1px solid gray;
 }
 
 .popup-overlay{
@@ -233,14 +234,14 @@ html, body {
 }
 
 .grid-item p {
-    font-family: 'MinecraftRegular' sans-serif;
+    font-family: 'MinecraftRegular', sans-serif;
     margin: 0px;
     padding: 0.5rem;
     font-size: 0.9rem;
     color: #ffffff;
 }
 .grid-item button {
-    font-family: 'MinecraftRegular' sans-serif;
+    font-family: 'MinecraftRegular', sans-serif;
     margin: 0px;
     padding: 0.5rem;
     background-color: transparent;
@@ -255,7 +256,7 @@ footer{
 }
 
 .grid-item a {
-    font-family: 'MinecraftRegular' sans-serif;
+    font-family: 'MinecraftRegular', sans-serif;
     margin: 0;
     padding: 0.5rem;
     color: #f7c957;
@@ -280,7 +281,10 @@ footer{
     display: inline-block;
     width: 200px;
     z-index: 1;
-  }
+}
+#dropdown-button:hover {
+    border: 1px solid white;
+}
 
 #dropdown-button {
     border: 1px solid #f7c957;
@@ -290,6 +294,7 @@ footer{
     cursor: pointer;
     height: 35px;
     width: 200px;
+    transition: border 0.3s; 
     text-align: left;
     font-family: "MinecraftRegular";
 }
@@ -319,6 +324,17 @@ footer{
     background-color: #f7c957;
     color: #fff;
 }
+.grid-item-name {
+    font-family: 'MinecraftRegular' sans-serif;
+    margin: 0;
+    font-size: small;
+    overflow: hidden;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: white;
+    max-width: 120px;
+}
 .grid-item .wiki-link {
     font-family: 'MinecraftRegular' sans-serif;
     margin: 0;
@@ -333,23 +349,6 @@ footer{
     right: 0;
     width: 44px;
     height: 32px;
-}
-.grid-item-download-button button {
-    font-family: 'MinecraftRegular' sans-serif;
-    margin: 0;
-    padding: 0.5rem;
-    color: #f7c957;
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-.grid-item-download-button {
-    font-family: 'MinecraftRegular' sans-serif;
-    margin: 0;
-    padding: 0.5rem;
-    color: #f7c957;
-    text-decoration: underline;
-    cursor: pointer;
 }
 
 footer {

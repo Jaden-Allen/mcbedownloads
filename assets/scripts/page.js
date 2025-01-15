@@ -2,32 +2,36 @@ export function populateList(categoryId, items) {
     const grid = document.getElementById(categoryId);
     grid.innerHTML = "";
     items.forEach((item) => {
-        const gridItem = document.createElement("div");
-        gridItem.className = "grid-item";
-        grid.appendChild(gridItem);
-        const imageContainer = document.createElement('div');
-        imageContainer.className = "image-container";
-        gridItem.appendChild(imageContainer);
-        const thumbnail = document.createElement('img');
-        thumbnail.className = 'thumbnail';
-        thumbnail.src = `${item.thumbnail}`;
-        thumbnail.alt = `${item.name}`;
-        imageContainer.appendChild(thumbnail);
-        const itemName = document.createElement('p');
-        const itemNameSpan = document.createElement('span');
-        itemNameSpan.textContent = `${item.name}`;
-        itemName.appendChild(itemNameSpan);
-        gridItem.appendChild(itemName);
-        const itemCreator = document.createElement('p');
-        const itemCreatorSpan = document.createElement('span');
-        itemCreatorSpan.textContent = `${item.creator}`;
-        itemCreator.appendChild(itemCreatorSpan);
-        gridItem.appendChild(itemCreator);
-        const gridItemFooterLinksDiv = document.createElement('div');
-        gridItem.appendChild(gridItemFooterLinksDiv);
-        const downloadLink = createDownloadButton(item.filePath, "Download", gridItemFooterLinksDiv, `${nameToId(item.name)}_${item.version}.mcaddon`);
+        createGridItem(categoryId, item, grid);
         //const wikiLink = createLink("Wiki", gridItemFooterLinksDiv, item);
     });
+}
+function createGridItem(categoryId, item, grid) {
+    const gridItem = document.createElement("div");
+    gridItem.className = "grid-item";
+    grid.appendChild(gridItem);
+    const imageContainer = document.createElement('div');
+    imageContainer.className = "image-container";
+    gridItem.appendChild(imageContainer);
+    const thumbnail = document.createElement('img');
+    thumbnail.className = 'thumbnail';
+    thumbnail.src = `${item.thumbnail}`;
+    thumbnail.alt = `${item.name}`;
+    imageContainer.appendChild(thumbnail);
+    const itemName = document.createElement('p');
+    const itemNameSpan = document.createElement('span');
+    itemNameSpan.className = 'grid-item-name';
+    itemNameSpan.textContent = `${item.name}`;
+    itemName.appendChild(itemNameSpan);
+    gridItem.appendChild(itemName);
+    const itemCreator = document.createElement('p');
+    const itemCreatorSpan = document.createElement('span');
+    itemCreatorSpan.textContent = `${item.creator}`;
+    itemCreator.appendChild(itemCreatorSpan);
+    gridItem.appendChild(itemCreator);
+    const gridItemFooterLinksDiv = document.createElement('div');
+    gridItem.appendChild(gridItemFooterLinksDiv);
+    const downloadLink = createDownloadButton(item.filePath, "Download", gridItemFooterLinksDiv, `${nameToId(item.name)}_${item.version}.mcaddon`);
 }
 export function OpenPopup() {
     adsOverlay.overlay.style.visibility = 'visible';
@@ -192,7 +196,21 @@ export function InitializeSortButton(list, categoryId) {
 }
 export function InitializeSearchBar(list, categoryId) {
     upperAreaContent.searchBar.addEventListener('input', function (ev) {
-        populateList(categoryId, SortListFromQuery(list, upperAreaContent.searchBar.value));
+        let isUserQuery = upperAreaContent.searchBar.value.charAt(0) === '@';
+        let isQuery = upperAreaContent.searchBar.value.substring(0, 1) === 'q.';
+        if (upperAreaContent.searchBar.value.includes('@')) {
+            populateList(categoryId, SortListFromCreatorQuery(list, upperAreaContent.searchBar.value.substring(1)));
+        }
+        else if (isQuery) {
+            let [query, value] = upperAreaContent.searchBar.value.split("=");
+            if (query === undefined || value === undefined)
+                return;
+            console.log(query + ", " + value);
+            populateList(categoryId, SortListFromQuery(list, query, value));
+        }
+        else {
+            populateList(categoryId, SortListFromNameQuery(list, upperAreaContent.searchBar.value));
+        }
     });
 }
 const upperAreaContent = {
@@ -211,8 +229,22 @@ export function SortList(items, sortType) {
             : sortType === SortType.recentlyUpdated ? new Date(b.lastUpdated).getTime() - new Date(a.lastUpdated).getTime()
                 : a.name.localeCompare(b.name));
 }
-export function SortListFromQuery(items, query) {
+export function SortListFromQuery(items, query, value) {
+    switch (query) {
+        case 'q.name':
+            return items.filter((a) => a.name.toLowerCase().includes(query.toLowerCase()));
+        case 'q.last_update':
+            return items.filter((a) => a.lastUpdated.toLowerCase().includes(query.toLowerCase()));
+        case 'q.date_created':
+            return items.filter((a) => a.creationDate.toLowerCase().includes(query.toLowerCase()));
+        default: return [];
+    }
+}
+export function SortListFromNameQuery(items, query) {
     return items.filter((a) => a.name.toLowerCase().includes(query.toLowerCase()));
+}
+export function SortListFromCreatorQuery(items, query) {
+    return items.filter((a) => a.creator.toLowerCase().includes(query.toLowerCase()));
 }
 export function StartRewardTimer() {
     setTimeout(() => {
