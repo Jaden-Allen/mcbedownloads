@@ -15,12 +15,29 @@ class DownloadsManager {
                 body: 'As a java edition fan and a fan of Basic Machinery by Vatonage available here. I decided to make a power mod as well. I was playing with basic machinery only to realize the items I needed or wanted were not available to get via Basic Machinery. This addon adds new machines and generators that help make survival a bit more interesting.',
                 creator: 'Jaden Allen',
                 version: '1.0.0',
-                thumbnail: 'assets/images/energy_n_more.png',
+                thumbnail: 'assets/downloads/Energy n More/images/pack_icon.png',
                 creationDate: '1/1/2025',
                 lastUpdated: '1/16/2025',
                 downloadType: DownloadType.addon,
-                filePath: 'assets/files/energy_n_more.mcaddon',
-                images: ['assets/images/template_screenshot.png'],
+                filePath: 'assets/downloads/Energy n More/files/energy_n_more.mcaddon',
+                images: ['assets/downloads/Energy n More/images/energy-and-more-beta004_3.png', 'assets/downloads/Energy n More/images/energy-and-more-beta004_4.png'],
+                supportedVersions: {
+                    min: '1.16.100',
+                    max: 'Latest'
+                }
+            },
+            {
+                name: 'Better Blast Furnace',
+                teaser: 'Ever wanted to make stone in a blast furnace? Well now you can! This addon adds everything you ever wanted to smelt in the blast furnace! It includes glass, stone, smooth stone, bricks, brick blocks, green dye and dry sponges!',
+                body: 'I was playing survival making a stone staircase when I realized how annoying it was to make stone. It takes forever! So I went to work making this addon for myself as well as anyone who will find it useful! This addon adds every blast furnace recipe that should already be in the game.',
+                creator: 'Jaden Allen',
+                version: '1.0.0',
+                thumbnail: 'assets/downloads/Better Blast Furnace/images/pack_icon.png',
+                creationDate: '1/1/2025',
+                lastUpdated: '1/16/2025',
+                downloadType: DownloadType.addon,
+                filePath: 'assets/downloads/Better Blast Furnace/files/BetterBlastFurnace.mcaddon',
+                images: ['assets/downloads/Better Blast Furnace/images/better-blast-furnace_2.png', 'assets/downloads/Better Blast Furnace/images/better-blast-furnace_3.png', 'assets/downloads/Better Blast Furnace/images/better-blast-furnace_4.png', 'assets/downloads/Better Blast Furnace/images/better-blast-furnace_5.png', 'assets/downloads/Better Blast Furnace/images/better-blast-furnace_6.png', 'assets/downloads/Better Blast Furnace/images/better-blast-furnace_7.png', 'assets/downloads/Better Blast Furnace/images/better-blast-furnace_8.png'],
                 supportedVersions: {
                     min: '1.16.100',
                     max: 'Latest'
