@@ -1,43 +1,18 @@
-export function createPanel(parent, className, id) {
-    const panel = parent.appendChild(document.createElement('div'));
-    if (className)
-        panel.className = className;
-    if (id)
-        panel.id = id;
-    return panel;
-}
-export function createText(parent, tagName, innerText, areaClassName, areaId, className, id) {
+export function createText(parent, tagName, innerText, areaClassName, areaId = undefined, className = undefined, id) {
     const textObject = {
-        area: parent.appendChild(document.createElement('div')),
+        area: createElement(parent, 'div', areaClassName, areaId, undefined, undefined),
         object: undefined
     };
-    textObject.object = textObject.area.appendChild(document.createElement(tagName));
-    if (areaClassName)
-        textObject.area.className = areaClassName;
-    if (areaId)
-        textObject.area.id = areaId;
-    textObject.object.innerText = innerText;
-    if (className)
-        textObject.object.className = className;
-    if (id)
-        textObject.object.id = id;
+    textObject.object = createElement(textObject.area, tagName, className, id, innerText, undefined);
     return textObject;
 }
 export function createImage(parent, source, alt, areaClassName, areaId, className, id) {
     const imageObject = {
-        area: parent.appendChild(document.createElement('div')),
+        area: createElement(parent, 'div', areaClassName, areaId, undefined, undefined),
         object: undefined
     };
-    imageObject.object = imageObject.area.appendChild(document.createElement('img'));
-    if (areaClassName)
-        imageObject.area.className = areaClassName;
-    if (areaId)
-        imageObject.area.id = id + areaId;
+    imageObject.object = createElement(imageObject.area, 'img', className, id, undefined, undefined);
     imageObject.object.src = source;
-    if (className)
-        imageObject.object.className = className;
-    if (id)
-        imageObject.object.id = id;
     imageObject.object.alt = alt;
     return imageObject;
 }
@@ -50,4 +25,30 @@ export function createButton(parent, textContent, className, id) {
     if (id)
         button.id = id;
     return button;
+}
+export function createLink(parent, innerText, href, download, areaClassName, areaId, className, id, spanClassName, spanId) {
+    const anchor = {
+        area: createElement(parent, 'div', areaClassName, areaId, undefined, undefined),
+        span: undefined,
+        object: undefined
+    };
+    anchor.object = createElement(anchor.area, 'a', className, id, undefined, undefined);
+    anchor.span = createElement(anchor.object, 'span', spanClassName, spanId, innerText, undefined);
+    if (download)
+        anchor.object.download = download;
+    if (href)
+        anchor.object.href = href;
+    return anchor;
+}
+export function createElement(parent, type, className, id, innerText, textContent) {
+    const element = parent.appendChild(document.createElement(type));
+    if (className)
+        element.className = className;
+    if (id)
+        element.id = id;
+    if (textContent)
+        element.textContent = textContent;
+    if (innerText)
+        element.innerText = innerText;
+    return element;
 }

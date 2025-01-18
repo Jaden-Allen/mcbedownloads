@@ -1,9 +1,10 @@
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, 350px);
+    grid-template-columns: repeat(auto-fit, 450px);
+    grid-template-rows: repeat(auto-fit, 250px);
     justify-content: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    align-items: center;
+    padding: 40px;
     gap: 1rem;
     outline: 2px solid#272727;
     background-image: radial-gradient(#161616, #131313);
@@ -11,138 +12,110 @@
 
 
 .grid-item {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Four equal columns */
+    grid-template-rows: repeat(5, 1fr); /* Three rows with 100px height */
+    gap: 10px; /* Space between grid items */
+    padding: 20px;
     position: relative;
-    width: 350px;
-    height: 200px;
+    width: 450px;
+    height: 250px;
     border: 2px solid #f7c957;
     border-radius: 8px;
-    overflow: hidden;
-    text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     background-image: radial-gradient(#313131, #131313);
 }
 
-.grid-item a {
-    font-family: 'Consolas', sans-serif;
-    margin: 0;
-    padding: 0.5rem;
-    color: #f7c957;
+.grid-element-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
 }
-.grid-item .thumbnail {
-    position: relative;
-    display: block;
-    width: 115px;
-    height: 115px;
-    margin-top: 0;
+
+
+.thumbnail-area {
+    grid-column: 1 / 1;
+    grid-row: 1 / 4;
+    aspect-ratio: 1 / 1;
+}
+.thumbnail-area img {
+    width: 100%;
+    height: 100%;
     image-rendering: pixelated;
-    outline: 2px solid #f7c957;
-    object-fit: cover;
-    z-index: 1;
+    transition: box-shadow 0.2s;
+    border: 3px solid #f7c957;
 }
-.grid-item .image-container {
-    left: 3%;
-    top: 5%;
-    position: absolute;
-    display: inline-block;
+.thumbnail-area img:hover {
+    box-shadow: 0 4px 10px rgba(247, 201, 87, 0.5);
 }
-.grid-item-name-area {
-    width: 195px;
-    height: 40px;
-    margin: 0px;
-    left: 40%;
-    top: 10%;
-    position: absolute;
-}
-.grid-item-name {
-    font-family: 'Consolas' sans-serif;
-    overflow: hidden;
-    display: inline-block;
-    text-overflow: ellipsis;
-    width: 100%;
-    height: 100%;
-    white-space: nowrap;
-    color: white;
-    font-size: 0.9rem;
-}
-.grid-item-version-area {
-    position: absolute;
-    display: inline-block;
-    right: 5%;
-    bottom: 3%;
-    width: 200px;
-    text-align: right;
-    height: 20px;
-}
-.grid-item-version {
-    color: white;
-    position: relative;
-    font-size: 0.8rem;
-    color: #ffffff;
-    width: 100%;
-    height: 100%;
-}
-.grid-item-wiki-link-area{
-    position: absolute;
-    display: inline-block;
-    left: 28%;
-    bottom: 5%;
-    width: 200px;
-    text-align: left;
-    height: 20px;
-}
-.grid-item-wiki-link{
-    color: white;
-    position: relative;
-    font-size: 15px;
-    width: 100%;
-    font-family: 'Consolas', sans-serif;
-    height: 100%;
-}
-.grid-item-creator-area {
-    font-family: 'Consolas' sans-serif;
-    width: 195px;
-    height: 40px;
-    margin: 0px;
-    left: 40%;
-    top: 60%;
-    position: absolute;
-}
-.grid-item-creator {
-    position: relative;
-    display: inline-block;
-    color: white;
-    font-size: 0.8rem;
-    color: #ffffff;
-}
-.grid-item-teaser-area {
-    position: absolute;
-    display: inline-block;
-    left: 40%;
-    top: 30%;
-    width: 195px;
-    height: 60px;
-}
-.grid-item-teaser {
-    color: white;
-    position: relative;
-    font-size: 0.8rem;
-    color: #ffffff;
-    width: auto;
-    height: auto;
-}
-.grid-item button {
-    position: absolute;
-    bottom: 5%;
-    left: 3%;
-    font-family: 'Consolas', sans-serif;
-    background-color: transparent;
-    border: transparent;
-    font-size: 15px;
-    color: #f7c957;
+.name-area {
+    grid-column: 2 / 5;
+    grid-row: 1 / 2;
     text-decoration: underline;
+    height: 30px;
+}
+.name-area h1{
+    width: 100%;
+    height: 100%;
+    font-size: 18px;
+}
+  
+.teaser-area {
+    display: flex;
+    grid-column: 2 / 5;
+    grid-row: 2 / 5;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+.teaser-area p{
+    margin: 0;
+    font-size: smaller;
+    
+}
+.creator-area {
+    grid-column: 1 / 3;
+    grid-row: 5 / 6;
+    white-space: nowrap;
+    font-size: smaller;
+    display: flex;
+    align-items: center;
+    text-align: start;
+}
+.version-area {
+    grid-column: 3 / 5;
+    grid-row: 6 / 7;
+    font-size: smaller;
+}
+
+.element-download-link {
+    grid-column: 1 / 2;
+    grid-row: 6 / 7;
+}
+.element-download-link span {
+    color: #f7c957;
+    transition: text-decoration 0.2s color 0.2s;
     cursor: pointer;
+}
+.element-download-link span:hover {
+    color: #fff279;
+    text-decoration: underline;
+}
+
+.element-wiki-link {
+    grid-column: 2 / 3;
+    grid-row: 6 / 7;
+}
+.element-wiki-link a{
+    text-decoration: none;
+}
+.element-wiki-link span {
+    color: #f7c957;
+    transition: text-decoration 0.2s, color 0.2s;
+    cursor: pointer;
+}
+.element-wiki-link span:hover {
+    color: #fff279;
+    text-decoration: underline;
 }

@@ -1,4 +1,5 @@
-import { DownloadItem } from "./downloads.js";
+import { DownloadItem, Downloads } from "./downloads.js";
+import { createElement, createImage, createLink, createText } from "./objects.js";
 
 
 export function populateList(categoryId: string, items: DownloadItem[]): void {
@@ -14,58 +15,46 @@ function createGridItem(categoryId: string, item: DownloadItem, grid: HTMLDivEle
     gridItem.className = "grid-item";
     grid.appendChild(gridItem);
 
-    const imageContainer = document.createElement('div');
-    imageContainer.className = "image-container";
-    gridItem.appendChild(imageContainer);
 
-    const thumbnail = document.createElement('img');
-    thumbnail.className = 'thumbnail';
-    thumbnail.src = `${item.thumbnail}`;
-    thumbnail.alt = `${item.name}`;
-    imageContainer.appendChild(thumbnail);
+    const thumbnail = createImage(gridItem, item.thumbnail, item.name, 'grid-element-item thumbnail-area', undefined, undefined, undefined);
 
-    const itemName = document.createElement('div');
-    itemName.className = 'grid-item-name-area';
-    const itemNameSpan = document.createElement('span');
-    itemNameSpan.className = 'grid-item-name'
-    itemNameSpan.textContent = `${item.name}`;
-    itemName.appendChild(itemNameSpan);
-    gridItem.appendChild(itemName);
+    const name = createText(gridItem, 'p', item.name, 'grid-element-item name-area', undefined, undefined, undefined);
 
-    const itemCreator = document.createElement('div');
-    itemCreator.className = 'grid-item-creator-area'
-    const itemCreatorSpan = document.createElement('span');
-    itemCreatorSpan.textContent = `Creator: ${item.creator}`;
-    itemCreatorSpan.className = 'grid-item-creator';
-    itemCreator.appendChild(itemCreatorSpan);
-    gridItem.appendChild(itemCreator);
+    const teaser = createText(gridItem, 'p', item.teaser, 'grid-element-item teaser-area', undefined, undefined, undefined);
 
-    const itemTeaserArea = gridItem.appendChild(document.createElement('div'));
-    itemTeaserArea.className = 'grid-item-teaser-area';
-    const itemTeaserSpan = document.createElement('span');
-    itemTeaserSpan.className = 'grid-item-teaser';
-    itemTeaserSpan.textContent = `${item.teaser}`; 
-    itemTeaserArea.appendChild(itemTeaserSpan);
+    const creator = createText(gridItem, 'p', `Creator: ${item.creator}`, 'grid-element-item creator-area', undefined, undefined, undefined);
 
-    const itemVersionArea = gridItem.appendChild(document.createElement('div'));
-    itemVersionArea.className = 'grid-item-version-area';
-    const itemVersionSpan = itemVersionArea.appendChild(document.createElement('span'));
-    itemVersionSpan.className = 'grid-item-version';
-    itemVersionSpan.textContent = `Version: ${item.version}`
+    const version = createText(gridItem, 'p', `Version: ${item.version}`, 'grid-element-item version-area', undefined, undefined, undefined);
 
-    const gridItemFooterLinksDiv = document.createElement('div');
-    gridItem.appendChild(gridItemFooterLinksDiv);
 
+    const downloadLink = createLink(gridItem, 'Download', undefined, undefined, 'grid-element-item element-download-link', undefined, undefined, undefined, undefined, undefined);
+
+    downloadLink.object.addEventListener('click', function(ev){
+        if (hasCompletedAction){
+            InstantDownload(item.filePath, Downloads.getDownloadString(item));
+            return;
+        }
+        else{
+            OpenPopup();
+            adsOverlay.downloadButton.addEventListener('click', function(ev){
+                ClosePopup();
+                InstantDownload(item.filePath, Downloads.getDownloadString(item));
+            })
+        }
+    })
+
+
+    const wikiLink = createLink(gridItem, 'Wiki', `wiki.html#${nameToId(item.name)}`, undefined, 'grid-element-item element-wiki-link', undefined, undefined, undefined, undefined, undefined);
     
-    const downloadLink = createDownloadButton(item.filePath, "Download", gridItemFooterLinksDiv, `${nameToId(item.name)}_${item.version}.mcaddon`)
-    const wikiLinkArea = gridItem.appendChild(document.createElement('div'));
-    wikiLinkArea.className = 'grid-item-wiki-link-area'
-    const wikiLink = wikiLinkArea.appendChild(document.createElement('a'));
-    wikiLink.className = 'grid-item-wiki-link';
-    wikiLink.href = `wiki.html#${nameToId(item.name)}`;
-    wikiLink.text = 'Wiki'
 }
 
+function InstantDownload(href: string, download: string){
+    const element = createElement(document.body, 'a', undefined, undefined, undefined, undefined);
+    element.href = href;
+    element.download = download;
+    element.click();
+    element.remove();
+}
 export function OpenPopup(){
     adsOverlay.overlay.style.visibility = 'visible';
 }
@@ -386,39 +375,11 @@ export function StartRewardTimer(){
     }, 5000)
 }
 
-export function createDownloadButton(href: string, innerText: string, parent: HTMLDivElement, download: string): HTMLButtonElement{
-    const link = document.createElement('button');
-    link.className = 'grid-item-download-button'
-    
-    if (adsOverlay.downloadButton != null){
-        adsOverlay.downloadButton.addEventListener('click', function(ev){
-            const _link = document.createElement('a');
-            _link.href = href;
-            _link.download = download;
-            _link.click();
-            _link.remove();
-        })
-    }
-    else{
-        console.warn('Download button in the popup area is not found...');
-    }
-    link.addEventListener('click', function(ev){
-        if (hasCompletedAction){
-            const _link = document.createElement('a');
-            _link.href = href;
-            _link.download = download;
-            _link.click();
-            _link.remove();
-        }
-        else{
-            OpenPopup();
-        }
-    })
-    link.innerText = innerText;
-    parent.appendChild(link);
-    return link;
-}
 export function nameToId(name: string){
     return name.toLowerCase().replace(/\s+/g, '_');
+}
+
+export function versionToId(version: string){
+    return version.toLowerCase().replace(/\s+/g, '_').replace('/', '_').replace('.', '_');
 }
 

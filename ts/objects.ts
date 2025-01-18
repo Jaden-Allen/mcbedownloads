@@ -1,49 +1,64 @@
-export function createPanel(parent: HTMLDivElement, className: string | undefined, id: string | undefined){
-    const panel = parent.appendChild(document.createElement('div'));
-    if (className) panel.className = className;
-    if (id) panel.id = id;
-    return panel;
-}
+import { adsOverlay, hasCompletedAction, OpenPopup } from "./page.js";
+
 export interface TextObject{
     area: HTMLDivElement;
     object: HTMLParagraphElement | HTMLHeadingElement | HTMLStyleElement;
 }
-export function createText(parent: HTMLDivElement, tagName: 'h1' | 'h2' | 'h3' | 'p' | 'style', innerText: string, areaClassName: string | undefined, areaId: string | undefined, className: string | undefined, id: string | undefined){
+export function createText(parent: HTMLDivElement, tagName: 'h1' | 'h2' | 'h3' | 'p' | 'style', innerText: string, areaClassName: StringOrUndefined, areaId: string | undefined = undefined, className: string | undefined = undefined, id: string | undefined){
     const textObject: TextObject = {
-        area: parent.appendChild(document.createElement('div')),
+        area: createElement(parent, 'div', areaClassName, areaId, undefined, undefined),
         object: undefined
     }
-    textObject.object = textObject.area.appendChild(document.createElement(tagName))
-    if (areaClassName) textObject.area.className = areaClassName
-    if (areaId) textObject.area.id = areaId
-    textObject.object.innerText = innerText;
-    if (className) textObject.object.className = className;
-    if (id) textObject.object.id = id;
-
+    textObject.object = createElement(textObject.area, tagName, className, id, innerText, undefined);
     return textObject;
 }
 export interface ImageObject{
     area: HTMLDivElement;
     object: HTMLImageElement;
 }
-export function createImage(parent: HTMLDivElement, source: string, alt: string, areaClassName: string | undefined, areaId: string | undefined, className: string | undefined, id: string | undefined){
+export function createImage(parent: HTMLDivElement, source: string, alt: string, areaClassName: StringOrUndefined, areaId: StringOrUndefined, className: StringOrUndefined, id: StringOrUndefined){
     const imageObject: ImageObject = {
-        area: parent.appendChild(document.createElement('div')),
+        area: createElement(parent, 'div', areaClassName, areaId, undefined, undefined),
         object: undefined
     }
-    imageObject.object = imageObject.area.appendChild(document.createElement('img'));
-    if (areaClassName) imageObject.area.className = areaClassName
-    if (areaId) imageObject.area.id = id + areaId
+    imageObject.object = createElement(imageObject.area, 'img', className, id, undefined, undefined);
     imageObject.object.src = source;
-    if (className) imageObject.object.className = className;
-    if (id) imageObject.object.id = id;
     imageObject.object.alt = alt;
     return imageObject;
 }
-export function createButton(parent: HTMLDivElement, textContent: string | undefined, className: string | undefined, id: string | undefined) {
+export function createButton(parent: HTMLDivElement, textContent: StringOrUndefined, className: StringOrUndefined, id: StringOrUndefined) {
     const button = parent.appendChild(document.createElement('button'));
     if (textContent) button.textContent = textContent;
     if (className) button.className = className;
     if (id) button.id = id;
     return button;
 }
+export interface AnchorObject{
+    area: HTMLDivElement;
+    span: HTMLSpanElement;
+    object: HTMLAnchorElement;
+}
+export function createLink(parent: HTMLDivElement, innerText: string, href: StringOrUndefined, download: StringOrUndefined, areaClassName: StringOrUndefined, areaId: StringOrUndefined, className: StringOrUndefined, id: StringOrUndefined, spanClassName: StringOrUndefined, spanId: StringOrUndefined){
+    const anchor: AnchorObject = {
+        area: createElement(parent, 'div', areaClassName, areaId, undefined, undefined),
+        span: undefined,
+        object: undefined
+    }
+    anchor.object = createElement(anchor.area, 'a', className, id, undefined, undefined);
+    anchor.span = createElement(anchor.object, 'span', spanClassName, spanId, innerText, undefined);
+    if (download) anchor.object.download = download;
+    if (href) anchor.object.href = href;
+
+    return anchor;
+}
+
+export function createElement<T extends keyof HTMLElementTagNameMap>(parent: HTMLElement, type: T, className: StringOrUndefined, id: StringOrUndefined, innerText: StringOrUndefined, textContent: StringOrUndefined){
+    const element = parent.appendChild(document.createElement(type));
+    if (className) element.className = className;
+    if (id) element.id = id;
+    if (textContent) element.textContent = textContent;
+    if (innerText) element.innerText = innerText;
+    return element;
+}
+
+export type StringOrUndefined = string | undefined;

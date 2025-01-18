@@ -1,9 +1,8 @@
 import { Downloads, DownloadType } from "./downloads.js";
 import { InitializeImageCarousel } from "./image_carousel.js";
-import { createButton, createImage, createPanel, createText } from "./objects.js";
+import { createButton, createElement, createImage, createText } from "./objects.js";
 import { nameToId } from "./page.js";
 
-Downloads.AddTemplate(1, DownloadType.addon)
 
 const hash = window.location.hash.slice(1);
 const wiki = document.getElementById('wiki-container') as HTMLDivElement;
@@ -25,9 +24,9 @@ function populateWiki(){
     const body = createText(wiki, 'p', download.body, 'wiki-item body-area', undefined, undefined, undefined)
     const imagesHeader = createText(wiki, 'h1', 'Images', 'wiki-item images-label', undefined, undefined, undefined)
 
-    const imagesArea = createPanel(wiki, 'wiki-item images-area', undefined);
+    const imagesArea = createElement(wiki, 'div', 'wiki-item images-area', undefined, undefined, undefined);
     const previousButton = createButton(imagesArea,'<', undefined,  'previous-image-button')
-    const carousel = createPanel(imagesArea, 'carousel', undefined);
+    const carousel = createElement(imagesArea, 'div', 'carousel', undefined, undefined, undefined);
     const nextButton = createButton(imagesArea,'>', undefined,  'next-image-button')
 
     InitializeImageCarousel(download.images, carousel, previousButton, nextButton);

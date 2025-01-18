@@ -1,3 +1,6 @@
+import { nameToId, versionToId } from "./page.js";
+
+
 export interface DownloadItem {
     name: string;
     creator: string;
@@ -20,7 +23,25 @@ export enum DownloadType{
 }
 
 class DownloadsManager{
-    private _all: DownloadItem[] = [];
+    private _all: DownloadItem[] = [
+        {
+            name: 'Energy n More',
+            teaser: 'Have you ever played java edition minecraft and wished you could have power on bedrock edition? Well now you can, this addon adds new machines, and generators to the game! Such as the water mill and the windmill which will generate electricity!',
+            body: 'As a java edition fan and a fan of Basic Machinery by Vatonage available here. I decided to make a power mod as well. I was playing with basic machinery only to realize the items I needed or wanted were not available to get via Basic Machinery. This addon adds new machines and generators that help make survival a bit more interesting.',
+            creator: 'Jaden Allen',
+            version: '1.0.0',
+            thumbnail: 'assets/images/energy_n_more.png',
+            creationDate: '1/1/2025',
+            lastUpdated: '1/16/2025',
+            downloadType: DownloadType.addon,
+            filePath: 'assets/files/energy_n_more.mcaddon',
+            images: ['assets/images/template_screenshot.png'],
+            supportedVersions: {
+                min: '1.16.100',
+                max: 'Latest'
+            }
+        }
+    ];
 
     public get All(): DownloadItem[]{
         return this._all;
@@ -52,6 +73,16 @@ class DownloadsManager{
             )
         }
     }
+    public getDownloadString(download: DownloadItem){
+        return nameToId(download.name) + "_" + versionToId(download.version) + this.getFileExtension(download.filePath); 
+    }
+    private getFileExtension = (filePath: string): string => {
+        const lastDotIndex = filePath.lastIndexOf('.');
+        if (lastDotIndex === -1 || filePath.lastIndexOf('/') > lastDotIndex) {
+          return ''; // No extension
+        }
+        return filePath.substring(lastDotIndex);
+    };
     private generateRandomPackIconUrl(){
         const randomUrls = [
             'assets/images/ui/pack_icons/pack_thumbnail_00.png',
