@@ -5,3 +5,6 @@ npm-debug.log*
 .npm
 .env
 .env.local
+.vscode/
+package-lock.json
+*.code-workspace
