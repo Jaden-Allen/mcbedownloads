@@ -10,11 +10,12 @@ export function populateList(categoryId: string, items: DownloadItem[]): void {
         //const wikiLink = createLink("Wiki", gridItemFooterLinksDiv, item);
     });
 } 
-function createGridItem(categoryId: string, item: DownloadItem, grid: HTMLDivElement){
+function createGridItem(categoryId: string, _item: DownloadItem, grid: HTMLDivElement){
+    const item = ConvertDownloadItemToCorrectedPaths(_item);
+
     const gridItem = document.createElement("div");
     gridItem.className = "grid-item";
     grid.appendChild(gridItem);
-
 
     const thumbnail = createImage(gridItem, item.thumbnail, item.name, 'grid-element-item thumbnail-area', undefined, undefined, undefined);
 
@@ -43,14 +44,35 @@ function createGridItem(categoryId: string, item: DownloadItem, grid: HTMLDivEle
         }
     })
 
-    const onHomePage = window.location.pathname === '/';
-
-    console.log(onHomePage);
-
-    const wikiURL = onHomePage ? `/wiki/#${nameToId(item.name)}` : `/wiki/#${nameToId(item.name)}`;
+    const wikiURL = CorrectPath(`/wiki/#${nameToId(item.name)}`);
     console.log(wikiURL);
     const wikiLink = createLink(gridItem, 'Wiki', wikiURL, undefined, 'grid-element-item element-wiki-link', undefined, undefined, undefined, undefined, undefined);
     
+}
+
+function ConvertDownloadItemToCorrectedPaths(item: DownloadItem){
+    let filePath = CorrectPath(item.filePath);
+    let thumbnail = CorrectPath(item.thumbnail);
+    let images = item.images.map(im => CorrectPath(im));
+
+    return {
+        body: item.body,
+        creationDate: item.creationDate,
+        creator: item.creator,
+        downloadType: item.downloadType,
+        lastUpdated: item.lastUpdated,
+        name: item.name,
+        supportedVersions: item.supportedVersions,
+        teaser: item.teaser,
+        version: item.version,
+        filePath: filePath,
+        thumbnail: thumbnail,
+        images: images,
+    } as DownloadItem;
+}
+function CorrectPath(absolutePath: string){
+    const isOnHomePage = window.location.pathname === '/' || window.location.pathname.endsWith('mcbedownloads/');
+    return isOnHomePage ? `.${absolutePath}` : `..${absolutePath}`
 }
 
 function InstantDownload(href: string, download: string){
@@ -157,11 +179,11 @@ class AdsOverlay{
         this._closePopupButton.id = 'popup-close-button';
 
         this._closePopupButtonImage = this._closePopupButton.appendChild(document.createElement('img'));
-        this._closePopupButtonImage.src = 'assets/images/ui/close_button_default.png';
+        this._closePopupButtonImage.src = CorrectPath('/assets/images/ui/close_button_default.png');
 
         this._closePopupButtonAudio = this._closePopupButton.appendChild(document.createElement('audio'));
         this._closePopupButtonAudio.id = 'close-button-audio';
-        this._closePopupButtonAudio.src = 'assets/sounds/ui_button.mp3';
+        this._closePopupButtonAudio.src = CorrectPath('/assets/sounds/ui_button.mp3');
 
         this._completeActionsText = this._popupContent.appendChild(document.createElement('h2'));
         this._completeActionsText.id = 'complete-actions-text';
