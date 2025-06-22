@@ -1,21 +1,23 @@
 import { Downloads, DownloadType } from "./downloads.js";
 import { InitializeImageCarousel } from "./image_carousel.js";
 import { createButton, createElement, createImage, createText } from "./objects.js";
-import { nameToId } from "./page.js";
+import { ConvertDownloadItemToCorrectedPaths, nameToId } from "./page.js";
 
 
 const hash = window.location.hash.slice(1);
 const wiki = document.getElementById('wiki-container') as HTMLDivElement;
 
-const download = Downloads.All.find(d => nameToId(d.name) === hash)
+const item = Downloads.All.find(d => nameToId(d.name) === hash)
 
 function populateWiki(){
-    if (download === undefined){
+    if (item === undefined){
         const errorText = wiki.appendChild(document.createElement('h1'));
         errorText.textContent = 'Error finding information about this pack...'
         return;
     }
     
+    let download = ConvertDownloadItemToCorrectedPaths(item);
+
     const thumbnail = createImage(wiki, download.thumbnail, download.name, 'wiki-item thumbnail-area', undefined, undefined, undefined);
     const name = createText(wiki, 'h2', download.name, 'wiki-item name-area', undefined, undefined, undefined);
     const teaser = createText(wiki, 'p', download.teaser, 'wiki-item teaser-area', undefined, undefined, undefined);

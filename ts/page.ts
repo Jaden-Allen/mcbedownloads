@@ -50,7 +50,7 @@ function createGridItem(categoryId: string, _item: DownloadItem, grid: HTMLDivEl
     
 }
 
-function ConvertDownloadItemToCorrectedPaths(item: DownloadItem){
+export function ConvertDownloadItemToCorrectedPaths(item: DownloadItem){
     let filePath = CorrectPath(item.filePath);
     let thumbnail = CorrectPath(item.thumbnail);
     let images = item.images.map(im => CorrectPath(im));
@@ -70,7 +70,7 @@ function ConvertDownloadItemToCorrectedPaths(item: DownloadItem){
         images: images,
     } as DownloadItem;
 }
-function CorrectPath(absolutePath: string){
+export function CorrectPath(absolutePath: string){
     const isOnHomePage = window.location.pathname === '/' || window.location.pathname.endsWith('mcbedownloads/');
     return isOnHomePage ? `.${absolutePath}` : `..${absolutePath}`
 }

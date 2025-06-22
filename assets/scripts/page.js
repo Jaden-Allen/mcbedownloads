@@ -36,7 +36,7 @@ function createGridItem(categoryId, _item, grid) {
     console.log(wikiURL);
     const wikiLink = createLink(gridItem, 'Wiki', wikiURL, undefined, 'grid-element-item element-wiki-link', undefined, undefined, undefined, undefined, undefined);
 }
-function ConvertDownloadItemToCorrectedPaths(item) {
+export function ConvertDownloadItemToCorrectedPaths(item) {
     let filePath = CorrectPath(item.filePath);
     let thumbnail = CorrectPath(item.thumbnail);
     let images = item.images.map(im => CorrectPath(im));
@@ -55,7 +55,7 @@ function ConvertDownloadItemToCorrectedPaths(item) {
         images: images,
     };
 }
-function CorrectPath(absolutePath) {
+export function CorrectPath(absolutePath) {
     const isOnHomePage = window.location.pathname === '/' || window.location.pathname.endsWith('mcbedownloads/');
     return isOnHomePage ? `.${absolutePath}` : `..${absolutePath}`;
 }
