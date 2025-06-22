@@ -30,12 +30,12 @@ class DownloadsManager{
             body: 'As a java edition fan and a fan of Basic Machinery by Vatonage available here. I decided to make a power mod as well. I was playing with basic machinery only to realize the items I needed or wanted were not available to get via Basic Machinery. This addon adds new machines and generators that help make survival a bit more interesting.',
             creator: 'Jaden Allen',
             version: '1.0.0',
-            thumbnail: 'assets/downloads/Energy n More/images/pack_icon.png',
+            thumbnail: '../assets/downloads/Energy n More/images/pack_icon.png',
             creationDate: '1/1/2025',
             lastUpdated: '1/16/2025',
             downloadType: DownloadType.addon,
-            filePath: 'assets/downloads/Energy n More/files/energy_n_more.mcaddon',
-            images: ['assets/downloads/Energy n More/images/energy-and-more-beta004_3.png', 'assets/downloads/Energy n More/images/energy-and-more-beta004_4.png'],
+            filePath: '../assets/downloads/Energy n More/files/energy_n_more.mcaddon',
+            images: ['../assets/downloads/Energy n More/images/energy-and-more-beta004_3.png', '../assets/downloads/Energy n More/images/energy-and-more-beta004_4.png'],
             supportedVersions: {
                 min: '1.16.100',
                 max: 'Latest'
@@ -47,12 +47,12 @@ class DownloadsManager{
             body: 'I was playing survival making a stone staircase when I realized how annoying it was to make stone. It takes forever! So I went to work making this addon for myself as well as anyone who will find it useful! This addon adds every blast furnace recipe that should already be in the game.',
             creator: 'Jaden Allen',
             version: '1.0.0',
-            thumbnail: 'assets/downloads/Better Blast Furnace/images/pack_icon.png',
+            thumbnail: '../assets/downloads/Better Blast Furnace/images/pack_icon.png',
             creationDate: '1/1/2025',
             lastUpdated: '1/16/2025',
             downloadType: DownloadType.addon,
-            filePath: 'assets/downloads/Better Blast Furnace/files/BetterBlastFurnace.mcaddon',
-            images: ['assets/downloads/Better Blast Furnace/images/better-blast-furnace_2.png', 'assets/downloads/Better Blast Furnace/images/better-blast-furnace_3.png', 'assets/downloads/Better Blast Furnace/images/better-blast-furnace_4.png', 'assets/downloads/Better Blast Furnace/images/better-blast-furnace_5.png', 'assets/downloads/Better Blast Furnace/images/better-blast-furnace_6.png', 'assets/downloads/Better Blast Furnace/images/better-blast-furnace_7.png', 'assets/downloads/Better Blast Furnace/images/better-blast-furnace_8.png'],
+            filePath: '../assets/downloads/Better Blast Furnace/files/BetterBlastFurnace.mcaddon',
+            images: ['../assets/downloads/Better Blast Furnace/images/better-blast-furnace_2.png', '../assets/downloads/Better Blast Furnace/images/better-blast-furnace_3.png', '../assets/downloads/Better Blast Furnace/images/better-blast-furnace_4.png', '../assets/downloads/Better Blast Furnace/images/better-blast-furnace_5.png', '../assets/downloads/Better Blast Furnace/images/better-blast-furnace_6.png', '../assets/downloads/Better Blast Furnace/images/better-blast-furnace_7.png', '../assets/downloads/Better Blast Furnace/images/better-blast-furnace_8.png'],
             supportedVersions: {
                 min: '1.16.100',
                 max: 'Latest'
@@ -69,14 +69,14 @@ class DownloadsManager{
                 {
                     name: 'Template Download',
                     creator: 'Jaden Allen',
-                    thumbnail: 'assets/images/energy_n_more.png',
+                    thumbnail: '../assets/images/energy_n_more.png',
                     teaser: 'This is a teaser',
-                    filePath: "assets/files/energy_n_more.mcaddon",
+                    filePath: "../assets/files/energy_n_more.mcaddon",
                     body: "This is a body",
                     images: [
-                        "assets/images/template_screenshot.png",
-                        "assets/images/template_screenshot.png",
-                        "assets/images/template_screenshot.png"
+                        "../assets/images/template_screenshot.png",
+                        "../assets/images/template_screenshot.png",
+                        "../assets/images/template_screenshot.png"
                     ],
                     supportedVersions: {
                         min: "1.16.100",
@@ -102,22 +102,22 @@ class DownloadsManager{
     };
     private generateRandomPackIconUrl(){
         const randomUrls = [
-            'assets/images/ui/pack_icons/pack_thumbnail_00.png',
-            'assets/images/ui/pack_icons/pack_thumbnail_01.png',
-            'assets/images/ui/pack_icons/pack_thumbnail_02.png',
-            'assets/images/ui/pack_icons/pack_thumbnail_03.png',
-            'assets/images/ui/pack_icons/pack_thumbnail_04.png',
-            'assets/images/ui/pack_icons/pack_thumbnail_05.png',
-            'assets/images/ui/pack_icons/pack_thumbnail_06.png',
-            'assets/images/ui/pack_icons/pack_thumbnail_07.png',
-            'assets/images/ui/pack_icons/pack_thumbnail_08.png',
-            'assets/images/ui/pack_icons/pack_thumbnail_09.png',
-            'assets/images/ui/pack_icons/pack_thumbnail_10.png',
-            'assets/images/ui/pack_icons/pack_thumbnail_11.png',
-            'assets/images/ui/pack_icons/pack_thumbnail_12.png',
-            'assets/images/ui/pack_icons/pack_thumbnail_13.png',
-            'assets/images/ui/pack_icons/pack_thumbnail_14.png',
-            'assets/images/ui/pack_icons/pack_thumbnail_15.png'
+            '../assets/images/ui/pack_icons/pack_thumbnail_00.png',
+            '../assets/images/ui/pack_icons/pack_thumbnail_01.png',
+            '../assets/images/ui/pack_icons/pack_thumbnail_02.png',
+            '../assets/images/ui/pack_icons/pack_thumbnail_03.png',
+            '../assets/images/ui/pack_icons/pack_thumbnail_04.png',
+            '../assets/images/ui/pack_icons/pack_thumbnail_05.png',
+            '../assets/images/ui/pack_icons/pack_thumbnail_06.png',
+            '../assets/images/ui/pack_icons/pack_thumbnail_07.png',
+            '../assets/images/ui/pack_icons/pack_thumbnail_08.png',
+            '../assets/images/ui/pack_icons/pack_thumbnail_09.png',
+            '../assets/images/ui/pack_icons/pack_thumbnail_10.png',
+            '../assets/images/ui/pack_icons/pack_thumbnail_11.png',
+            '../assets/images/ui/pack_icons/pack_thumbnail_12.png',
+            '../assets/images/ui/pack_icons/pack_thumbnail_13.png',
+            '../assets/images/ui/pack_icons/pack_thumbnail_14.png',
+            '../assets/images/ui/pack_icons/pack_thumbnail_15.png'
         ]
 
         return randomUrls[Math.round((randomUrls.length - 1) * Math.random())]

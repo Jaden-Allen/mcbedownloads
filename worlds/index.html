@@ -15,13 +15,14 @@
           <h1 style="margin: 10px;">MCBE Downloads</h1>
           <nav>
             <a href="../">Home</a>
-            <a href="/">Addons</a>
-            <a href="../worlds/">Worlds</a> 
+            <a href="../addons/">Addons</a>
+            <a href="/">Worlds</a>
             <a href="../resource_packs/">Resource Packs</a>
             <a href="../skin_packs/">Skin Packs</a>
           </nav>
         </header>
-        <main>
+      
+        <main id="main-content-area">
           <div class="filter-area">
             <div class="sorting-dropdown">
               <button id="dropdown-button">Recently Updated</button>
@@ -36,16 +37,18 @@
               <ul id="autocomplete-results" class="autocomplete-list"></ul>
             </div>
           </div>
-          <section id="addons">
-            <h2>Addons</h2>
-            <div class="grid" id="addons-list"></div>
+          <section id="worlds">
+            <h2>Worlds</h2>
+            <div class="grid" id="worlds-list"></div>
           </section>
         </main>
-        <footer id="footer">
+        
+
+        <footer>
           <p>&copy; 2025 MCBE Downloads. All rights reserved.</p>
         </footer>
       
-        <script type="module" src="../assets/scripts/addons.js"></script>
+        <script type="module" src="assets/scripts/worlds.js"></script>
       </div>
     </body>
 </html>

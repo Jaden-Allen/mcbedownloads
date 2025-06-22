@@ -31,7 +31,7 @@ function createGridItem(categoryId, item, grid) {
             });
         }
     });
-    const wikiLink = createLink(gridItem, 'Wiki', `wiki.html#${nameToId(item.name)}`, undefined, 'grid-element-item element-wiki-link', undefined, undefined, undefined, undefined, undefined);
+    const wikiLink = createLink(gridItem, 'Wiki', `wiki/#${nameToId(item.name)}`, undefined, 'grid-element-item element-wiki-link', undefined, undefined, undefined, undefined, undefined);
 }
 function InstantDownload(href, download) {
     const element = createElement(document.body, 'a', undefined, undefined, undefined, undefined);
