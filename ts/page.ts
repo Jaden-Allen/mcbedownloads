@@ -43,8 +43,13 @@ function createGridItem(categoryId: string, item: DownloadItem, grid: HTMLDivEle
         }
     })
 
+    const onHomePage = window.location.pathname === '/';
 
-    const wikiLink = createLink(gridItem, 'Wiki', `wiki/#${nameToId(item.name)}`, undefined, 'grid-element-item element-wiki-link', undefined, undefined, undefined, undefined, undefined);
+    console.log(onHomePage);
+
+    const wikiURL = onHomePage ? `/wiki/#${nameToId(item.name)}` : `/wiki/#${nameToId(item.name)}`;
+    console.log(wikiURL);
+    const wikiLink = createLink(gridItem, 'Wiki', wikiURL, undefined, 'grid-element-item element-wiki-link', undefined, undefined, undefined, undefined, undefined);
     
 }
 
