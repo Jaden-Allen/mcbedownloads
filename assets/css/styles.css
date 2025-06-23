@@ -196,6 +196,12 @@ html, body {
 
 
 #autocomplete-results {
+    position: absolute;         /* Make it float below the input */
+    top: 100%;                  /* Align right under the input */
+    left: 0;
+    width: 100%;                /* Match width of search-form */
+    margin-top: 4px;
+
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -203,8 +209,10 @@ html, body {
     max-height: 150px;
     background-color: #222;
     overflow-y: auto;
-  }
-  
+    z-index: 10;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
   #autocomplete-results li {
     padding: 8px;
     cursor: pointer;
@@ -220,27 +228,41 @@ footer{
 
 
 
-.sorting-dropdown {
-    position: relative;
-    display: inline-block;
-    width: 200px;
-    z-index: 1;
-}
-#dropdown-button:hover {
-    border: 1px solid white;
+.filter-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* KEY CHANGE */
+    align-items: center;
+    padding: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
+.sorting-dropdown {
+    position: relative;
+    display: flex;
+    flex: 0 0 auto;
+    max-width: 200px; /* KEY */
+    width: 100%;
+    z-index: 1;
+}
 #dropdown-button {
+    flex: 1;
     border: 1px solid #f7c957;
     border-radius: 4px;
     color: white;
     background-color: #222;
     cursor: pointer;
     height: 35px;
-    width: 200px;
+    width: 100%;
     transition: border 0.3s; 
     text-align: left;
     font-family: "Consolas";
+    padding-left: 10px;
+}
+
+#dropdown-button:hover {
+    border: 1px solid white;
 }
 
 #dropdown-options {
@@ -264,49 +286,38 @@ footer{
     cursor: pointer;
 }
 
-#dropdown-options li:hover, #dropdown-options li:focus {
+#dropdown-options li:hover,
+#dropdown-options li:focus {
     background-color: #333;
     color: #fff;
 }
 
-
-footer {
-    background: #222;
-    color: #f7c957;
-    text-align: center;
-    padding: 1rem;
-}
-
-.filter-area{
-    display: flex;
-    justify-content: space-evenly;
-    padding: 1rem;
-    flex-direction: row;
-}
 .search-form {
-    display: block;
-    justify-content: right;
-    height: 35;
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    max-width: 200px; /* KEY */
+    width: 100%;
+    gap: 0.5rem;
+    position: relative;
 }
-.search-form label{
-    color: white;
-    font-size: large;
-}
-.search-form input{
+
+.search-form input {
+    flex: 1;
     padding: 8px;
+    height: 35px;
     border: 2px solid #f7c957;
     background-color: #222;
     border-radius: 5px;
-    width: 200;
-    height: 35;
     color: white;
     font-family: "Consolas";
-}
-.search-form input::placeholder[type="search"] {
-    color: white;
-    font-family: "Consolas";
+    min-width: 0;
 }
 
+.search-form input::placeholder {
+    color: white;
+    font-family: "Consolas";
+}
 
 .search-form button {
     padding: 9px;
@@ -314,10 +325,19 @@ footer {
     color: white;
     border: 2px solid #f7c957;
     border-radius: 5px;
-    height: 35;
+    height: 35px;
     cursor: pointer;
+    font-family: "Consolas";
+    white-space: nowrap;
 }
 
 .search-form button:hover {
     background-color: #c59d38;
+}
+
+footer {
+    background: #222;
+    color: #f7c957;
+    text-align: center;
+    padding: 1rem;
 }

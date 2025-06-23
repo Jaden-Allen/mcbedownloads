@@ -1,3 +1,4 @@
+import { createCard } from "./card.js";
 import { DownloadItem, Downloads } from "./downloads.js";
 import { createElement, createImage, createLink, createText } from "./objects.js";
 
@@ -6,8 +7,7 @@ export function populateList(categoryId: string, items: DownloadItem[]): void {
     const grid = document.getElementById(categoryId) as HTMLDivElement;
     grid.innerHTML = "";
     items.forEach((item) => {
-        createGridItem(categoryId, item, grid);
-        //const wikiLink = createLink("Wiki", gridItemFooterLinksDiv, item);
+        createCard(categoryId, item, grid);
     });
 } 
 function createGridItem(categoryId: string, _item: DownloadItem, grid: HTMLDivElement){
@@ -50,6 +50,7 @@ function createGridItem(categoryId: string, _item: DownloadItem, grid: HTMLDivEl
     
 }
 
+
 export function ConvertDownloadItemToCorrectedPaths(item: DownloadItem){
     let filePath = CorrectPath(item.filePath);
     let thumbnail = CorrectPath(item.thumbnail);
@@ -75,7 +76,7 @@ export function CorrectPath(absolutePath: string){
     return isOnHomePage ? `.${absolutePath}` : `..${absolutePath}`
 }
 
-function InstantDownload(href: string, download: string){
+export function InstantDownload(href: string, download: string){
     const element = createElement(document.body, 'a', undefined, undefined, undefined, undefined);
     element.href = href;
     element.download = download;

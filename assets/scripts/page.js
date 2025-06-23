@@ -1,11 +1,11 @@
+import { createCard } from "./card.js";
 import { Downloads } from "./downloads.js";
 import { createElement, createImage, createLink, createText } from "./objects.js";
 export function populateList(categoryId, items) {
     const grid = document.getElementById(categoryId);
     grid.innerHTML = "";
     items.forEach((item) => {
-        createGridItem(categoryId, item, grid);
-        //const wikiLink = createLink("Wiki", gridItemFooterLinksDiv, item);
+        createCard(categoryId, item, grid);
     });
 }
 function createGridItem(categoryId, _item, grid) {
@@ -59,7 +59,7 @@ export function CorrectPath(absolutePath) {
     const isOnHomePage = window.location.pathname === '/' || window.location.pathname.endsWith('mcbedownloads/');
     return isOnHomePage ? `.${absolutePath}` : `..${absolutePath}`;
 }
-function InstantDownload(href, download) {
+export function InstantDownload(href, download) {
     const element = createElement(document.body, 'a', undefined, undefined, undefined, undefined);
     element.href = href;
     element.download = download;
