@@ -193,10 +193,7 @@ html, body {
     height: 100%; /* Ensure the page-wrapper takes the full height */
   }
 
-.grid-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px #f7c95780;
-}
+
 
 #autocomplete-results {
     list-style-type: none;

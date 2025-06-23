@@ -22,7 +22,7 @@ function populateWiki(){
     const name = createText(wiki, 'h2', download.name, 'wiki-item name-area', undefined, undefined, undefined);
     const teaser = createText(wiki, 'p', download.teaser, 'wiki-item teaser-area', undefined, undefined, undefined);
     const creator = createText(wiki, 'p', `Creator: ${download.creator}`, 'wiki-item creator-area', undefined, undefined, undefined);
-    const version = createText(wiki, 'p', `Version: ${download.version}\nMin: ${download.supportedVersions.min}\nMax: ${download.supportedVersions.max}`, 'wiki-item version-area', undefined, undefined, undefined);
+    const version = createText(wiki, 'p', `Version: ${download.version}\n\nSupported Versions:\nMin: ${download.supportedVersions.min}\nMax: ${download.supportedVersions.max}`, 'wiki-item version-area', undefined, undefined, undefined);
     const body = createText(wiki, 'p', download.body, 'wiki-item body-area', undefined, undefined, undefined)
     const imagesHeader = createText(wiki, 'h1', 'Images', 'wiki-item images-label', undefined, undefined, undefined)
 

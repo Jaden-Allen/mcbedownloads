@@ -5,8 +5,10 @@
 }
 .wiki-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Four equal columns */
-  grid-template-rows: repeat(3, 100px); /* Three rows with 100px height */
+  grid-template-columns: repeat(auto-fit, 1fr); /* Four equal columns */
+  grid-template-rows: repeat(auto-fit, 100px); /* Three rows with 100px height */
+  justify-content: center;
+  align-items: center;
   gap: 10px; /* Space between grid items */
   padding: 40px;
 }
@@ -20,10 +22,10 @@
 
 /* Custom positioning */
 .thumbnail-area {
-  grid-column: 1 / 1; /* Spans from column 1 to 3 */
-  grid-row: 1 / 1; /* Spans the first row */
+  grid-column: 1 / 2; /* Spans from column 1 to 3 */
+  grid-row: 1 / 2; /* Spans the first row */
   aspect-ratio: 1 / 1;
-  width: 100px;
+  width: 70px;
 }
 .thumbnail-area img {
   width: 100%;
@@ -38,8 +40,8 @@
 }
 
 .name-area {
-  grid-column: 2 / 5; /* Spans from column 3 to 5 */
-  grid-row: 1 / 1; /* Spans from row 2 to row 4 */
+  grid-column: 2 / 4; /* Spans from column 3 to 5 */
+  grid-row: 1 / 2; /* Spans from row 2 to row 4 */
 }
 .name-area h1{
   width: 100%;
@@ -48,8 +50,8 @@
 
 .teaser-area {
   display: flex;
-  grid-column: 2 / 5;; /* Spans from column 2 to 4 */
-  grid-row: 2 / 4; /* Spans the first row */
+  grid-column: 2 / 5; /* Spans from column 2 to 4 */
+  grid-row: 2 / 3; /* Spans the first row */
   align-items: center;
   justify-content: center;
 }
@@ -59,25 +61,35 @@
 
 .body-area {
   grid-column: 2 / 5;; /* Spans from column 2 to 4 */
-  grid-row: 4 / 6; /* Spans the first row */
+  grid-row: 3 / 4; /* Spans the first row */
 }
 .creator-area {
-  grid-column: 1 / 1;; /* Spans from column 2 to 4 */
-  grid-row: 4 / 4; /* Spans the first row */
+  grid-column: 4 / 5;; /* Spans from column 2 to 4 */
+  grid-row: 1 / 2; /* Spans the first row */
+  align-items: center;
+  justify-content: center;
 }
 .version-area {
-  grid-column: 1 / 1;; /* Spans from column 2 to 4 */
-  grid-row: 5 / 5; /* Spans the first row */
+  grid-column: 1 / 5; /* Spans from column 2 to 4 */
+  grid-row: 4 / 5; /* Spans the first row */
 }
 .images-label {
-  grid-column: 1 / 5;; /* Spans from column 2 to 4 */
-  grid-row: 6 / 7; /* Spans the first row */
+  grid-column: 1 / 5; /* Spans from column 2 to 4 */
+  grid-row: 5 / 6; /* Spans the first row */
 }
 .images-area {
-  grid-column: 1 / 5;; /* Spans from column 2 to 4 */
-  grid-row: 7 / 8; /* Spans the first row */
+  grid-column: 1 / 5; /* Spans from column 2 to 4 */
+  grid-row: 6 / 7; /* Spans the first row */
   gap: 10px;
   border: 2px solid #ccc;
+  width: 100%;
+  max-width: 650px;
+  
+  /* Height preferences */
+  height: auto;               /* Let content drive height */
+  min-height: 100px;          /* Don’t get smaller than this */
+  max-height: 365px;          /* Preferred cap — will shrink if needed */
+  justify-self: center;
 }
 .images-area img {
   width: 80%;
