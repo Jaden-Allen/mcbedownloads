@@ -23,7 +23,7 @@
   grid-column: 1 / 1; /* Spans from column 1 to 3 */
   grid-row: 1 / 1; /* Spans the first row */
   aspect-ratio: 1 / 1;
-  width: 200px;
+  width: 100px;
 }
 .thumbnail-area img {
   width: 100%;

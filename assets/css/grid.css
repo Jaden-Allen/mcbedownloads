@@ -1,6 +1,6 @@
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, 500px);
+    grid-template-columns: repeat(auto-fit, 350px);
     grid-template-rows: repeat(auto-fit, 300px);
     justify-content: center;
     align-items: center;
@@ -18,8 +18,8 @@
     gap: 10px; /* Space between grid items */
     padding: 20px;
     position: relative;
-    width: 450px;
-    height: 250px;
+    width: 300px;
+    height: 200px;
     border: 2px solid #f7c957;
     border-radius: 8px;
     transition: transform 0.3s, box-shadow 0.3s;
@@ -65,14 +65,20 @@
     display: flex;
     grid-column: 2 / 5;
     grid-row: 2 / 5;
-    display: flex;
-    align-items: center;
+    align-items: first baseline;
+    justify-content: center;
     text-align: center;
 }
-.teaser-area p{
+
+.teaser-area p {
     margin: 0;
     font-size: smaller;
-    
+    display: -webkit-box;           /* Required for multi-line truncation */
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;          /* Set the max number of lines you want */
+    line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .creator-area {
     grid-column: 1 / 3;
