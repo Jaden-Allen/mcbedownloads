@@ -353,5 +353,9 @@ export function nameToId(name) {
     return name.toLowerCase().replace(/\s+/g, '_');
 }
 export function versionToId(version) {
-    return version.toLowerCase().replace(/\s+/g, '_').replace('/', '_').replace('.', '_');
+    return version
+        .toLowerCase()
+        .replace(/\s+/g, '_')
+        .replace(/\//g, '_')
+        .replace(/\./g, '_');
 }

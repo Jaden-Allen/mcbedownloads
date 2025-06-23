@@ -408,6 +408,10 @@ export function nameToId(name: string){
 }
 
 export function versionToId(version: string){
-    return version.toLowerCase().replace(/\s+/g, '_').replace('/', '_').replace('.', '_');
+    return version
+        .toLowerCase()
+        .replace(/\s+/g, '_')
+        .replace(/\//g, '_')
+        .replace(/\./g, '_');
 }
 
